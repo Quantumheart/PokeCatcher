@@ -1,0 +1,12 @@
+<main class="container-fluid">
+  <table class="table">
+    <tr>
+      <th>Name</th>
+    </tr>
+    <tbody>
+        <ng-container *ngFor="let result of (result$ | async)?.results">
+          <tr>{{result.name}}</tr>
+        </ng-container>
+    </tbody>
+  </table>
+</main>
