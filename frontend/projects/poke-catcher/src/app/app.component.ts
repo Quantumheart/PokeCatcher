@@ -47,4 +47,8 @@ export class GameService {
   getVersions(): Observable<NamedAPIResourceList> {
     return this.httpClient.get<NamedAPIResourceList>('http://localhost:3000/versions');
   }
+
+  getVersionByName(name: string) {
+    return this.httpClient.get<{id: number, name: string, names: string[], }>('http://localhost:3000/versions',{params: {name: name}});
+  }
 }

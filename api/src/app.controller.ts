@@ -1,6 +1,6 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { GameService } from './game.service';
-import { NamedAPIResourceList } from 'pokenode-ts';
+import { NamedAPIResourceList, Version } from 'pokenode-ts';
 
 @Controller()
 export class AppController {
@@ -9,5 +9,10 @@ export class AppController {
   @Get('versions')
   getVersions(): Promise<NamedAPIResourceList> {
     return this.gameService.getVersions();
+  }
+
+  @Get('versions')
+  getVersionByName(@Query() query: { name: string }): Promise<Version> {
+    return this.gameService.getVersionByName(query.name);
   }
 }
