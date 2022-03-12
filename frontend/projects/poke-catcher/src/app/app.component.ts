@@ -10,18 +10,18 @@ import {HttpClient} from "@angular/common/http";
 export class AppComponent implements OnInit {
   title = 'poke-catcher';
 
-  result$ : Observable<NamedAPIResourceList> = new Observable<NamedAPIResourceList>();
+  pokemonVersions$ : Observable<NamedAPIResourceList> = new Observable<NamedAPIResourceList>();
 
 
   constructor(private gameService: GameService) {
   }
 
   ngOnInit(): void {
-    this.result$ = this.gameService.getVersions();
+    this.pokemonVersions$ = this.gameService.getVersions();
   }
 }
 
-interface NamedAPIResource extends APIResource {
+export interface NamedAPIResource extends APIResource {
   name: string;
 }
 
