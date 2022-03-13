@@ -1,18 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { MainClient, NamedAPIResourceList } from 'pokenode-ts';
+import { Version } from 'pokenode-ts';
+import { VersionService } from './version/version.service';
 
 @Injectable()
 export class GameService {
-  private client: MainClient;
-  constructor() {
-    this.client = new MainClient();
-  }
+  constructor(private versionService: VersionService) {}
 
-  getVersions(): Promise<NamedAPIResourceList> {
-    return this.client.game.listVersionGroups(0, 100);
-  }
-
-  getVersionByName(name: string) {
-    return this.client.game.getVersionByName(name);
+  getVersions(): Record<string, Version[]> {
+    return this.versionService.versions;
   }
 }
