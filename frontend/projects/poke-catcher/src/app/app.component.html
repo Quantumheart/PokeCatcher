@@ -1,4 +1,9 @@
-<main class="container-fluid">
-  <app-side-nav [items]="(pokemonVersions$ | async)?.results"></app-side-nav>
+<main class="container-fluid m-0 p-0">
+  <div class="col-12">
+    <app-nav-bar></app-nav-bar>
+  </div>
 
+  <div class="col-1">
+    <app-side-nav></app-side-nav>
+  </div>
 </main>

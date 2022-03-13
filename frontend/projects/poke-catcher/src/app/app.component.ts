@@ -1,6 +1,7 @@
 import {Component, Injectable, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
+import {Version} from './version-list/version.model';
 
 @Component({
   selector: 'app-root',
@@ -10,14 +11,11 @@ import {HttpClient} from "@angular/common/http";
 export class AppComponent implements OnInit {
   title = 'poke-catcher';
 
-  pokemonVersions$ : Observable<NamedAPIResourceList> = new Observable<NamedAPIResourceList>();
-
-
-  constructor(private gameService: GameService) {
+  constructor() {
   }
 
   ngOnInit(): void {
-    this.pokemonVersions$ = this.gameService.getVersions();
+
   }
 }
 
@@ -44,8 +42,8 @@ export class GameService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getVersions(): Observable<NamedAPIResourceList> {
-    return this.httpClient.get<NamedAPIResourceList>('http://localhost:3000/versions');
+  getVersions(): Observable<Record<string, Version[]>> {
+    return this.httpClient.get<Record<string, Version[]>>('http://localhost:3000/versions');
   }
 
   getVersionByName(name: string) {

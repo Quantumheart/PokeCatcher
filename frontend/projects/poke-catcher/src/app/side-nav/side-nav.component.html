@@ -1,7 +1,17 @@
-<ul class="nav flex-column">
-    <li class="nav-item" *ngFor="let result of items">
-        <a class="nav-link">
-            {{result.name}}
-        </a>
-    </li>
-</ul>
+<ng-container *ngIf="(versionGroups$ | async) as result">
+  <div class="nav flex-column">
+    <div class="nav-item" *ngFor="let key of result; let index = index; ">
+      {{key}}
+      <hr>
+      <ng-container *ngIf="(groupGames$ | async) as versionGroup">
+        <div *ngFor="let game of versionGroup[key];">
+          <a class="nav-link">
+            {{game.name }}
+          </a>
+        </div>
+      </ng-container>
+
+    </div>
+  </div>
+
+</ng-container>
